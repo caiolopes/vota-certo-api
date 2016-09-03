@@ -22,7 +22,7 @@
 >   "accessToken": "------- TOKEN HERE ---------"
 > }
 > ```
->
+
 >### [GET] /user/me
 >
 >**Query**
@@ -85,6 +85,57 @@
 >      "createdAt": "2015-07-08T04:25:05.000Z",
 >      "updatedAt": "2015-07-08T04:25:05.000Z"
 >    }
+>  }
+>]
+>```
+
+>### [GET] /politician/:id
+>
+>**Params**
+>
+>`id = 1`
+>
+>**Response**
+>
+>```json
+>{
+>  "id": 1,
+>  "name": "João Dória Júnior",
+>  "picture": "https://cdn.eleicoes2016.com.br/foto/jo/ao/joao-doria-l.jpg",
+>  "office": "Prefeito",
+>  "createdAt": null,
+>  "updatedAt": null,
+>  "partyId": 1,
+>  "party": {
+>    "id": 1,
+>    "name": "Partido da Social Democracia Brasileira",
+>    "picture": "http://static.psdb.org.br/wp-content/uploads/2013/10/header-logo-psdb.png",
+>    "initials": "PSDB",
+>    "createdAt": "2015-07-08T04:25:05.000Z",
+>    "updatedAt": "2015-07-08T04:25:05.000Z"
+>  }
+>}
+>```
+
+>### [GET] /politician/:id/tweet
+>
+>**Params**
+>
+>`id = 1`
+>
+>**Response**
+>
+>```json
+>[
+>  {
+>    "id": 1,
+>    "name": "Mauricio Giordano",
+>    "username": "mauriciogior",
+>    "picture": "https://pbs.twimg.com/profile_images/378800000388596881/9f63214014e1185735743748d07a2093_bigger.jpeg",
+>    "text": "As ruas estão tudo quebradas!!! EH MOLE?",
+>    "createdAt": null,
+>    "updatedAt": null,
+>    "politicianId": 1
 >  }
 >]
 >```
