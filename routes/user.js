@@ -15,25 +15,25 @@ var User = require('../models/user')
 var user = (router) => {
 
     router.route('/user')
-        .get(User.authenticator, getAll)
+        .get(g(User.authenticator), g(getAll))
 
     router.route('/user/auth')
-        .post(fbAuth)
+        .post(g(fbAuth))
 
     router.route('/user/:id')
-        .get(User.authenticator, get)
+        .get(g(User.authenticator), g(get))
 }
 
 /**
  * Returns all users
  */
-var getAll = g(function* (req, res, next) {
+var getAll = function* (req, res, next) {
     var users = yield User.findAll({
         attributes : User.attr
     })
 
     res.spit(users)
-})
+}
 
 /**
  * Routes for '/user/:id'
@@ -43,7 +43,7 @@ var getAll = g(function* (req, res, next) {
  * Returns a single user
  * @attr id
  */
-var get = g(function* (req, res, next) {
+var get = function* (req, res, next) {
     var id = req.params.id
 
     if (id == 'me') {
@@ -60,13 +60,13 @@ var get = g(function* (req, res, next) {
     } else {
         res.spit(user)
     }
-})
+}
 
 /**
  * Authenticates an user from its FB token
  * @post fb_token The facebook token
  */
-var fbAuth = g(function* (req, res, next) {
+var fbAuth = function* (req, res, next) {
     if (!req.body.fb_token) {
         res.err(res.errors.MISSING_PARAMS, 400)
         return
@@ -139,7 +139,7 @@ var fbAuth = g(function* (req, res, next) {
 
         res.spit(user)
     }
-})
+}
 
 /**
  * Expose routes/user

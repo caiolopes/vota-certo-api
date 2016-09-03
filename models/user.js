@@ -52,7 +52,7 @@ User.Token = UserToken
 /**
  * Associates an authenticator
  */
-User.authenticator = g(function* (req, res, next) {
+User.authenticator = function* (req, res, next) {
 
     let accessToken = req.query.access_token || null
 
@@ -75,7 +75,7 @@ User.authenticator = g(function* (req, res, next) {
         next()
     }
   
-})
+}
 
 /**
  * Expose models/user

@@ -14,12 +14,11 @@ var Politician = require('../models/politician')
 var politician = (router) => {
 
     router.route('/politician')
-        .get(getAll)
-        .post(create)
+        .get(g(getAll))
+        .post(g(create))
 
     router.route('/politician/:id')
-        .get(get)
-        .put(update)
+        .get(g(get))
 
 }
 
@@ -30,20 +29,20 @@ var politician = (router) => {
 /**
  * Returns all politicians
  */
-var getAll = g(function* (req, res, next) {
+var getAll = function* (req, res, next) {
     var politicians = yield Politician.findAll({
         attributes : Politician.attr
     })
 
     res.spit(politicians)
-})
+}
 
 /**
  * Creates a new politician
  */
-var create = g(function* (req, res, next) {
+var create = function* (req, res, next) {
     res.send('Create Politician')
-})
+}
 
 /**
  * Routes for '/politician/:id'
@@ -53,7 +52,7 @@ var create = g(function* (req, res, next) {
  * Returns a single politician
  * @attr id
  */
-var get = g(function* (req, res, next) {
+var get = function* (req, res, next) {
     var id = req.params.id
 
     var politician = yield Politician.findOne({
@@ -66,7 +65,7 @@ var get = g(function* (req, res, next) {
     } else {
         res.spit(politician)
     }
-})
+}
 
 /**
  * Expose routes/politician
