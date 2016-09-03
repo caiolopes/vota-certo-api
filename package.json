@@ -10,6 +10,7 @@
         "co-express": "1.2.1",
         "sequelize": "3.13.0",
         "sequelize-cli": "2.0.0",
-        "mysql": "2.9.0"
+        "mysql": "2.9.0",
+        "fb": "^0.7.3",
     }
 }

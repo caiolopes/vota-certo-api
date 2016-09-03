@@ -1,8 +1,8 @@
-'use strict'
+'use strict';
 
 module.exports = {
     up: function (queryInterface, Sequelize) {
-        queryInterface.createTable('parties', {
+        queryInterface.createTable('users', {
             id : {
                 type          : Sequelize.INTEGER,
                 primaryKey    : true,
@@ -12,13 +12,16 @@ module.exports = {
                 type      : Sequelize.STRING,
                 allowNull : false
             },
-            picture : {
+            email : {
                 type      : Sequelize.STRING,
-                allowNull : false
+                allowNull : false,
+                unique    : true
             },
-            initials : {
-                type      : Sequelize.STRING,
-                allowNull : false
+            facebookId : {
+                type : Sequelize.STRING
+            },
+            picture : {
+                type : Sequelize.STRING
             },
             createdAt : {
                 type : Sequelize.DATE
@@ -30,6 +33,6 @@ module.exports = {
     },
 
     down: function (queryInterface, Sequelize) {
-        queryInterface.dropTable('user-tokens')
+        queryInterface.dropTable('users')
     }
-}
+};

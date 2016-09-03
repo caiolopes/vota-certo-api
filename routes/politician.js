@@ -1,7 +1,6 @@
 'use strict'
 
 var g = require('co-express')
-    , google = require('googleapis')
 
 /**
  * Models

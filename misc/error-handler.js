@@ -1,15 +1,32 @@
 'use strict'
 
 var errors = {
-    /**
-     * Errors code and description
-     */
-    '100' : 'Politician not found',
+    '100' : 'Unknown error',
+    '101' : 'Query cannot be empty',
+    '107' : 'Access denied (token might be expired)',
+    '108' : 'Facebook token denied',
+    '111' : 'A given parameter is too short',
+    '112' : 'Missing required parameters',
+    '113' : 'Access denied (needs higher level)',
+    '120' : 'User not found',
+    '121' : 'Password is incorrect',
+    '122' : 'Email address already exists',
+    '123' : 'Politician not found',
 
     /**
-     * Helpers
-     */
-    POLITICIAN_NOT_FOUND : 100
+    * Helpers
+    */
+    UNKNOWN_ERROR         : 100,
+    QUERY_IS_EMPTY        : 101,
+    ACCESS_DENIED         : 107,
+    FB_TOKEN_DENIED       : 108,
+    PARAM_TOO_SHORT       : 111,
+    MISSING_PARAMS        : 112,
+    NOT_ENOUGH_PERMISSION : 113,
+    USER_NOT_FOUND        : 120,
+    PASSWORD_INCORRECT    : 121,
+    EMAIL_ALREADY_EXISTS  : 122,
+    POLITICIAN_NOT_FOUND  : 123
 }
 
 /**
