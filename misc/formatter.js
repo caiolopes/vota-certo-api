@@ -8,7 +8,13 @@ var isArray = require('./is-array')
 exports = module.exports = (req, res, next) => {
 
     res.spit = (data, array) => {
-        var spittle = array ? (isArray(data) ? data : [data]) : data
+        var spittle = data
+
+        if (array) {
+            var spittle = isArray(data) ? data : [data]
+
+            if (data == null) spittle = []
+        }
 
         res.status(200).send(spittle)
     }

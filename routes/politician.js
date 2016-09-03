@@ -1,11 +1,13 @@
 'use strict'
 
 var g = require('co-express')
+    , Sequelize = require('sequelize')
 
 /**
  * Models
  */
 var Politician = require('../models/politician')
+    , User     = require('../models/user')
     , Party    = require('../models/party')
     , Tweet    = require('../models/tweet')
 
@@ -16,14 +18,16 @@ var Politician = require('../models/politician')
 var politician = (router) => {
 
     router.route('/politician')
-        .get(g(getAll))
-        .post(g(create))
+        .get(g(User.authenticator), g(getAll))
+
+    router.route('/politician/tweet')
+        .get(g(User.authenticator), g(getRandomTweets))
 
     router.route('/politician/:id')
-        .get(g(get))
+        .get(g(User.authenticator), g(get))
 
     router.route('/politician/:id/tweet')
-        .get(g(getTweets))
+        .get(g(User.authenticator), g(getTweets))
 }
 
 /**
@@ -46,10 +50,29 @@ var getAll = function* (req, res, next) {
 }
 
 /**
- * Creates a new politician
+ * Routes for '/politician/tweet'
  */
-var create = function* (req, res, next) {
-    res.send('Create Politician')
+
+/**
+ * Returns all random tweets
+ * @attr id
+ */
+var getRandomTweets = function* (req, res, next) {
+    var tweets = yield Tweet.find({
+        attributes : Tweet.attr,
+        where : {
+            id : {
+                $notIn : Sequelize.literal(`\
+                    (SELECT tweetId FROM analyses WHERE userId = ${req.user.id})\
+                `)
+            }
+        },
+        order: [
+            [ Sequelize.fn('RAND', '') ]
+        ]
+    })
+
+    res.spit(tweets, true)
 }
 
 /**
