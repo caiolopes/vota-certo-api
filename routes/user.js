@@ -1,6 +1,8 @@
 'use strict'
 
 var g = require('co-express')
+    , crypto = require('crypto')
+    , moment = require('moment')
     , fbSDK = require('../misc/facebook-auth')
 
 /**
@@ -68,7 +70,7 @@ var get = function* (req, res, next) {
  */
 var fbAuth = function* (req, res, next) {
     if (!req.body.fb_token) {
-        res.err(res.errors.MISSING_PARAMS, 400)
+        res.err(res.errs.MISSING_PARAMS, 400)
         return
     }
 
@@ -78,7 +80,7 @@ var fbAuth = function* (req, res, next) {
     var fbUser = yield fbSDK(fbToken)
 
     if (fbUser.error) {
-        res.err(res.errors.FB_TOKEN_DENIED, 401)
+        res.err(res.errs.FB_TOKEN_DENIED, 401)
     } else {
 
         // Finds the user on database

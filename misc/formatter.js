@@ -14,9 +14,11 @@ exports = module.exports = (req, res, next) => {
         var spittle = data;
 
         if (format == 'json') {
-            spittle = {
+            /*spittle = {
                 'data' : isArray(data) ? data : [data]
-            }
+            }*/
+
+            spittle = data
         } else if (format == 'xml') {
             // TODO
         }

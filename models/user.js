@@ -68,7 +68,7 @@ User.authenticator = function* (req, res, next) {
     })
 
     if (userToken == null) {
-        res.err(res.errors.ACCESS_DENIED, 401)
+        res.err(res.errs.ACCESS_DENIED, 401)
     } else {
         req.user = userToken.dataValues.user
 

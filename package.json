@@ -6,6 +6,7 @@
     "dependencies": {
         "dotenv": "1.2.0",
         "express": "4.13.3",
+        "moment": "^2.10.6",
         "body-parser": "1.14.1",
         "co-express": "1.2.1",
         "sequelize": "3.13.0",
