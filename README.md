@@ -139,3 +139,90 @@
 >  }
 >]
 >```
+
+## /analysis
+
+>### [POST] /analysis
+>
+>**Query**
+>
+>`access_token = TOKEN_HERE`
+>
+>**Fields**
+>
+>`tweet_id = 1`
+>`sentiment = positive`
+>
+>**Response**
+>
+>```json
+>{
+>  "id": 1,
+>  "sentiment": "positive",
+>  "createdAt": null,
+>  "updatedAt": null,
+>  "userId": 1,
+>  "tweetId": 1,
+>  "politicianId": 1,
+>  "tweet": {
+>    "id": 1,
+>    "name": "Mauricio Giordano",
+>    "username": "mauriciogior",
+>    "picture": "https://pbs.twimg.com/profile_images/378800000388596881/9f63214014e1185735743748d07a2093_bigger.jpeg",
+>    "text": "As ruas estão tudo quebradas!!! EH MOLE?",
+>    "createdAt": null,
+>    "updatedAt": null,
+>    "politicianId": 1
+>  },
+>  "politician": {
+>    "id": 1,
+>    "name": "João Dória Júnior",
+>    "picture": "https://cdn.eleicoes2016.com.br/foto/jo/ao/joao-doria-l.jpg",
+>    "office": "Prefeito",
+>    "createdAt": null,
+>    "updatedAt": null,
+>    "partyId": 1
+>  }
+>}
+>```
+
+>### [GET] /analysis
+>
+>**Query**
+>
+>`access_token = TOKEN_HERE`
+>
+>**Response**
+>
+>```json
+>[
+>  {
+>    "id": 1,
+>    "sentiment": "positive",
+>    "createdAt": null,
+>    "updatedAt": null,
+>    "userId": 1,
+>    "tweetId": 1,
+>    "politicianId": 1,
+>    "tweet": {
+>      "id": 1,
+>      "name": "Mauricio Giordano",
+>      "username": "mauriciogior",
+>      "picture": "https://pbs.twimg.com/profile_images/378800000388596881/9f63214014e1185735743748d07a2093_bigger.jpeg",
+>      "text": "As ruas estão tudo quebradas!!! EH MOLE?",
+>      "createdAt": null,
+>      "updatedAt": null,
+>      "politicianId": 1
+>    },
+>    "politician": {
+>      "id": 1,
+>      "name": "João Dória Júnior",
+>      "picture": "https://cdn.eleicoes2016.com.br/foto/jo/ao/joao-doria-l.jpg",
+>      "office": "Prefeito",
+>      "createdAt": null,
+>      "updatedAt": null,
+>      "partyId": 1
+>    }
+>  }
+>]
+>```

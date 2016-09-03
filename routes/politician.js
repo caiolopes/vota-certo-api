@@ -105,7 +105,7 @@ var getTweets = function* (req, res, next) {
         where      : { politicianId : id }
     })
 
-    res.spit(require('../misc/is-array')(tweets) ? tweets : [tweets])
+    res.spit(tweets, true)
 }
 
 /**

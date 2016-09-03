@@ -7,23 +7,10 @@ var isArray = require('./is-array')
  */
 exports = module.exports = (req, res, next) => {
 
-    res.spit = (data, status, format) => {
-        status = status || 200
-        format = format || 'json'
+    res.spit = (data, array) => {
+        var spittle = array ? (isArray(data) ? data : [data]) : data
 
-        var spittle = data;
-
-        if (format == 'json') {
-            /*spittle = {
-                'data' : isArray(data) ? data : [data]
-            }*/
-
-            spittle = data == null ? [] : data
-        } else if (format == 'xml') {
-            // TODO
-        }
-
-        res.status(status).send(spittle)
+        res.status(200).send(spittle)
     }
 
     next()

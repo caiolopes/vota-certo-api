@@ -12,6 +12,9 @@ var errors = {
     '121' : 'Password is incorrect',
     '122' : 'Email address already exists',
     '123' : 'Politician not found',
+    '124' : 'Tweet not found',
+    '125' : 'Analysis not found',
+    '126' : 'Sentiment not allowed',
 
     /**
     * Helpers
@@ -26,7 +29,10 @@ var errors = {
     USER_NOT_FOUND        : 120,
     PASSWORD_INCORRECT    : 121,
     EMAIL_ALREADY_EXISTS  : 122,
-    POLITICIAN_NOT_FOUND  : 123
+    POLITICIAN_NOT_FOUND  : 123,
+    TWEET_NOT_FOUND       : 124,
+    ANALYSIS_NOT_FOUND    : 125,
+    SENTIMENT_NOT_ALLOWED : 126
 }
 
 /**
