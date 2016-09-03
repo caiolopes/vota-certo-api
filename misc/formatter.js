@@ -18,7 +18,7 @@ exports = module.exports = (req, res, next) => {
                 'data' : isArray(data) ? data : [data]
             }*/
 
-            spittle = data
+            spittle = data == null ? [] : data
         } else if (format == 'xml') {
             // TODO
         }

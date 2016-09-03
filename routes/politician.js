@@ -7,6 +7,7 @@ var g = require('co-express')
  */
 var Politician = require('../models/politician')
     , Party    = require('../models/party')
+    , Tweet    = require('../models/tweet')
 
 /**
  * Generates the politician route
@@ -21,6 +22,8 @@ var politician = (router) => {
     router.route('/politician/:id')
         .get(g(get))
 
+    router.route('/politician/:id/tweet')
+        .get(g(getTweets))
 }
 
 /**
@@ -74,6 +77,35 @@ var get = function* (req, res, next) {
     } else {
         res.spit(politician)
     }
+}
+
+/**
+ * Routes for '/politician/:id/tweet'
+ */
+
+/**
+ * Returns all tweets related to that politician
+ * @attr id
+ */
+var getTweets = function* (req, res, next) {
+    var id = req.params.id
+
+    var politician = yield Politician.findOne({
+        attributes : Politician.attr,
+        where      : { id : id }
+    })
+
+    if (politician == null) {
+        res.err(res.errs.POLITICIAN_NOT_FOUND, 404)
+        return
+    }
+
+    var tweets = yield Tweet.find({
+        attributes : Tweet.attr,
+        where      : { politicianId : id }
+    })
+
+    res.spit(tweets)
 }
 
 /**
