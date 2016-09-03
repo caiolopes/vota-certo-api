@@ -6,6 +6,7 @@ var g = require('co-express')
  * Models
  */
 var Politician = require('../models/politician')
+    , Party    = require('../models/party')
 
 /**
  * Generates the politician route
@@ -31,7 +32,11 @@ var politician = (router) => {
  */
 var getAll = function* (req, res, next) {
     var politicians = yield Politician.findAll({
-        attributes : Politician.attr
+        attributes : Politician.attr,
+        include    : [{
+            model      : Party,
+            attributes : Party.attr
+        }]
     })
 
     res.spit(politicians)
@@ -57,7 +62,11 @@ var get = function* (req, res, next) {
 
     var politician = yield Politician.findOne({
         attributes : Politician.attr,
-        where      : { id : id }
+        where      : { id : id },
+        include    : [{
+            model      : Party,
+            attributes : Party.attr
+        }]
     })
 
     if (politician == null) {
