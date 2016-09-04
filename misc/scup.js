@@ -15,7 +15,8 @@ exports = module.exports = () => {
 ?publickey=${process.env.SCUP_PUBLIC_KEY}\
 &time=${time}\
 &signature=${signature}\
-&page=5`, function(err, response, body) {
+&tags_ids=1345018\
+&page=3`, function(err, response, body) {
             if (!err) {
                 resolve(JSON.parse(body))
             } else {

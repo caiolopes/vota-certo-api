@@ -23,6 +23,10 @@ module.exports = {
                 type      : Sequelize.STRING,
                 allowNull : false
             },
+            cover : {
+                type      : Sequelize.STRING,
+                allowNull : false
+            },
             office : {
                 type      : Sequelize.STRING,
                 allowNull : false

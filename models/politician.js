@@ -13,7 +13,8 @@ var Party = require('./party.js')
 var Politician = sequelize.define('politician', {
     name    : { type : Sequelize.STRING },
     picture : { type : Sequelize.STRING },
-    office  : { type : Sequelize.STRING }
+    office  : { type : Sequelize.STRING },
+    cover   : { type : Sequelize.STRING }
 })
 
 /* Associates Politician with Party */

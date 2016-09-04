@@ -105,31 +105,47 @@
 >[
 >  {
 >    "politician": {
->      "id": 2,
->      "name": "Fernando Haddad",
->      "picture": "https://cdn.eleicoes2016.com.br/foto/fe/rn/fernando-haddad-l.jpg",
->      "office": "Prefeito",
->      "createdAt": null,
->      "updatedAt": null,
->      "partyId": 2
->    },
->    "positive": 0,
->    "negative": 1,
->    "neutral": 0
->  },
->  {
->    "politician": {
 >      "id": 3,
 >      "name": "Celso Russomanno",
 >      "picture": "https://cdn.eleicoes2016.com.br/foto/ce/ls/celso-russomanno-l.jpg",
 >      "office": "Prefeito",
 >      "createdAt": null,
 >      "updatedAt": null,
->      "partyId": 5
+>      "partyId": 5,
+>      "party": {
+>        "id": 5,
+>        "name": "Partido Republicano Brasileiro",
+>        "picture": "https://pbs.twimg.com/profile_images/580094848339955712/Bcl8G7e2_normal.png",
+>        "initials": "PRB",
+>        "createdAt": "2015-07-08T04:25:05.000Z",
+>        "updatedAt": "2015-07-08T04:25:05.000Z"
+>      }
 >    },
->    "positive": 0,
->    "negative": 0,
->    "neutral": 1
+>    "positive": 21,
+>    "negative": 7,
+>    "neutral": 0
+>  },
+>  {
+>    "politician": {
+>      "id": 6,
+>      "name": "Major Olímpio",
+>      "picture": "https://cdn.eleicoes2016.com.br/foto/ma/jo/major-olimpio-l.jpg",
+>      "office": "Prefeito",
+>      "createdAt": null,
+>      "updatedAt": null,
+>      "partyId": 6,
+>      "party": {
+>        "id": 6,
+>        "name": "Solidariedade",
+>        "picture": "https://lh3.googleusercontent.com/-le1DKY7B8Mo/AAAAAAAAAAI/AAAAAAAAABI/6kYC9cHS9TY/s46-c-k-no/photo.jpg",
+>        "initials": "SD",
+>        "createdAt": "2015-07-08T04:25:05.000Z",
+>        "updatedAt": "2015-07-08T04:25:05.000Z"
+>      }
+>    },
+>    "positive": 21,
+>    "negative": 20,
+>    "neutral": 0
 >  }
 >]
 >```

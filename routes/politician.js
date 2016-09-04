@@ -118,9 +118,15 @@ var getAnalysis = function* (req, res, next) {
         where      : { userId : req.user.id },
         include    : [{
             model      : Politician,
-            attributes : Politician.attr
+            attributes : Politician.attr,
+            include: [ Party ]
         }]
     })
+
+    if (analyses.length < 30) {
+        res.spit(null, true)
+        return
+    }
 
     var politicians = []
 
@@ -150,8 +156,8 @@ var getAnalysis = function* (req, res, next) {
 
     politicians.sort(
         function(a, b) {
-            var aP = a.positive - a.negative
-            var bP = b.positive - b.negative
+            var aP = (a.positive * 100) / (a.positive + a.negative)
+            var bP = (b.positive * 100) / (b.positive + b.negative)
 
             return bP - aP
         }

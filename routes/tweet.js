@@ -82,22 +82,34 @@ var seed = function* (req, res, next) {
     var tweets = yield Scup()
 
     for (var i in tweets.data) {
-        var id = tweets.data[i].mention.content.permalink
-        id = id.substr(id.lastIndexOf('/') + 1)
-        var tweet = yield Twitter(id)
+        try {
+            var id = tweets.data[i].mention.content.permalink
+            id = id.substr(id.lastIndexOf('/') + 1)
+            var tweet = yield Twitter(id)
 
-        tweet = replaceData(
-            tweets.data[i].search.query,
-            tweet
-        )
+            tweet = replaceData(
+                tweets.data[i].search.query,
+                tweet
+            )
 
-        yield Tweet.create({
-            name         : tweet.user.name,
-            username     : tweet.user.screen_name,
-            picture      : tweet.user.profile_image_url,
-            text         : tweet.text,
-            politicianId : tweet.politicianId
-        })
+            var has = yield Tweet.findOne({
+                where : {
+                    text : { $like: `%${tweet.text}%` }
+                }
+            })
+
+            if (has) continue
+
+            yield Tweet.create({
+                name         : tweet.user.name,
+                username     : tweet.user.screen_name,
+                picture      : tweet.user.profile_image_url,
+                text         : tweet.text,
+                politicianId : tweet.politicianId
+            })
+        } catch (e) {
+            continue
+        }
     }
 
     next()
