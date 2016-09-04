@@ -23,6 +23,9 @@ var analysis = (router) => {
         .post(g(User.authenticator), g(create), g(get))
         .get(g(User.authenticator), g(getAll))
 
+    router.route('/analysis/politician/:id')
+        .get(g(User.authenticator), g(getForPolitician))
+
     router.route('/analysis/:id')
         .get(g(User.authenticator), g(get))
 }
@@ -79,6 +82,26 @@ var getAll = function* (req, res, next) {
     var analyses = yield Analysis.findAll({
         attributes : Analysis.attr,
         where      : { userId : req.user.id },
+        include    : [{
+            model      : Tweet,
+            attributes : Tweet.attr
+        }, {
+            model      : Politician,
+            attributes : Politician.attr
+        }]
+    })
+
+    res.spit(analyses, true)
+}
+
+/**
+ * Get for politician
+ */
+var getForPolitician = function* (req, res, next) {
+    var analyses = yield Analysis.findAll({
+        attributes : Analysis.attr,
+        where      : { userId : req.user.id,
+            politicianId : req.params.id },
         include    : [{
             model      : Tweet,
             attributes : Tweet.attr

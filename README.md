@@ -351,3 +351,78 @@
 >  }
 >]
 >```
+
+>### [GET] /analysis/politician/:id
+>
+>**Query**
+>
+>`access_token = TOKEN_HERE`
+>
+>**Params**
+>
+>`id = 1`
+>
+>**Response**
+>
+>```json
+>[
+>  {
+>    "id": 95,
+>    "sentiment": "positive",
+>    "createdAt": "2016-09-04T09:51:22.000Z",
+>    "updatedAt": "2016-09-04T09:51:22.000Z",
+>    "userId": 1,
+>    "tweetId": 193,
+>    "politicianId": 1,
+>    "tweet": {
+>      "id": 193,
+>      "name": "danilo",
+>      "username": "dalino",
+>      "picture": "http://pbs.twimg.com/profile_images/718443341340348416/sDHyJsk3_normal.jpg",
+>      "text": "agora vou resumir a campanha do [...] [...]: EU JÁ FUI POBRE\nJÁ FUI POBRE\nEU JÁ ATRASEI CONTA\nJÁ FUI BEM POBRE SE FOR PENSAR\nEU ERA >POBRE",
+>      "createdAt": "2016-09-04T02:28:12.000Z",
+>      "updatedAt": "2016-09-04T02:28:12.000Z",
+>      "politicianId": 1
+>    },
+>    "politician": {
+>      "id": 1,
+>      "name": "João Dória Júnior",
+>      "picture": "https://pbs.twimg.com/profile_images/1713673043/joao-doria-jr_400x400.jpg",
+>      "office": "Prefeito",
+>      "cover": "https://img.buzzfeed.com/buzzfeed-static/static/2016-06/27/18/asset/buzzfeed-prod-web06/sub-buzz-20593-1467068321-1.jpg?resize=720:480",
+>      "createdAt": null,
+>      "updatedAt": null,
+>      "partyId": 1
+>    }
+>  },
+>  {
+>    "id": 102,
+>    "sentiment": "negative",
+>    "createdAt": "2016-09-04T09:52:07.000Z",
+>    "updatedAt": "2016-09-04T09:52:07.000Z",
+>    "userId": 1,
+>    "tweetId": 209,
+>    "politicianId": 1,
+>    "tweet": {
+>      "id": 209,
+>      "name": "camila",
+>      "username": "kidrauhlpoems",
+>      "picture": "http://pbs.twimg.com/profile_images/772183147278721024/ebSJvK_e_normal.jpg",
+>      "text": "SOCORRO A PROPAGANDA DO [...] [...]",
+>      "createdAt": "2016-09-04T02:38:53.000Z",
+>      "updatedAt": "2016-09-04T02:38:53.000Z",
+>      "politicianId": 1
+>    },
+>    "politician": {
+>      "id": 1,
+>      "name": "João Dória Júnior",
+>      "picture": "https://pbs.twimg.com/profile_images/1713673043/joao-doria-jr_400x400.jpg",
+>      "office": "Prefeito",
+>      "cover": "https://img.buzzfeed.com/buzzfeed-static/static/2016-06/27/18/asset/buzzfeed-prod-web06/sub-buzz-20593-1467068321-1.jpg?resize=720:480",
+>      "createdAt": null,
+>      "updatedAt": null,
+>      "partyId": 1
+>    }
+>  }
+>]
+>```
