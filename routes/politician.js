@@ -10,6 +10,7 @@ var Politician = require('../models/politician')
     , User     = require('../models/user')
     , Party    = require('../models/party')
     , Tweet    = require('../models/tweet')
+    , Analysis = require('../models/analysis')
 
 /**
  * Generates the politician route
@@ -20,8 +21,8 @@ var politician = (router) => {
     router.route('/politician')
         .get(g(User.authenticator), g(getAll))
 
-    router.route('/politician/tweet')
-        .get(g(User.authenticator), g(getRandomTweets))
+    router.route('/politician/me')
+        .get(g(User.authenticator), g(getAnalysis))
 
     router.route('/politician/:id')
         .get(g(User.authenticator), g(get))
@@ -47,32 +48,6 @@ var getAll = function* (req, res, next) {
     })
 
     res.spit(politicians)
-}
-
-/**
- * Routes for '/politician/tweet'
- */
-
-/**
- * Returns all random tweets
- * @attr id
- */
-var getRandomTweets = function* (req, res, next) {
-    var tweets = yield Tweet.find({
-        attributes : Tweet.attr,
-        where : {
-            id : {
-                $notIn : Sequelize.literal(`\
-                    (SELECT tweetId FROM analyses WHERE userId = ${req.user.id})\
-                `)
-            }
-        },
-        order: [
-            [ Sequelize.fn('RAND', '') ]
-        ]
-    })
-
-    res.spit(tweets, true)
 }
 
 /**
@@ -129,6 +104,60 @@ var getTweets = function* (req, res, next) {
     })
 
     res.spit(tweets, true)
+}
+
+/**
+ * Returns all analysis
+ * @attr id
+ */
+var getAnalysis = function* (req, res, next) {
+    var id = req.params.id
+
+    var analyses = yield Analysis.findAll({
+        attributes : Politician.attr,
+        where      : { userId : req.user.id },
+        include    : [{
+            model      : Politician,
+            attributes : Politician.attr
+        }]
+    })
+
+    var politicians = []
+
+    for (var i in analyses) {
+        let found = -1
+
+        for (var j in politicians) {
+            if (politicians[j].politician.id == analyses[i].politician.id) {
+                found = j
+                break
+            }
+        }
+
+        if (found == -1) {
+            politicians.push({
+                politician : analyses[i].politician,
+                positive   : 0,
+                negative   : 0,
+                neutral    : 0
+            })
+
+            found = politicians.length - 1
+        }
+
+        politicians[found][analyses[i].sentiment] ++
+    }
+
+    politicians.sort(
+        function(a, b) {
+            var aP = a.positive - a.negative
+            var bP = b.positive - b.negative
+
+            return bP - aP
+        }
+    )
+
+    res.spit(politicians, true)
 }
 
 /**

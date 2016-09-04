@@ -131,10 +131,10 @@ var fbAuth = function* (req, res, next) {
         accessToken.update(moment().format())
 
         // Creates a token for session
-        var userToken = (yield User.Token.create({
+        var userToken = yield User.Token.create({
             userId      : user.id,
             accessToken : accessToken.digest('base64')
-        })).dataValues
+        })
 
         user = user.dataValues
         user.accessToken = userToken.accessToken

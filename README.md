@@ -93,33 +93,6 @@
 >]
 >```
 
->### [GET] /politician/tweet
->
->**Description**
->
->Gather random tweets about random politicians. Skips tweets you already analyzed.
->
->**Query**
->
->`access_token = TOKEN_HERE`
->
->**Response**
->
->```json
->[
->  {
->    "id": 1,
->    "name": "Mauricio Giordano",
->    "username": "mauriciogior",
->    "picture": "https://pbs.twimg.com/profile_images/378800000388596881/9f63214014e1185735743748d07a2093_bigger.jpeg",
->    "text": "As ruas estão tudo quebradas!!! EH MOLE?",
->    "createdAt": null,
->    "updatedAt": null,
->    "politicianId": 1
->  }
->]
->```
-
 >### [GET] /politician/:id
 >
 >**Query**
@@ -161,6 +134,62 @@
 >**Params**
 >
 >`id = 1`
+>
+>**Response**
+>
+>```json
+>[
+>  {
+>    "id": 1,
+>    "name": "Mauricio Giordano",
+>    "username": "mauriciogior",
+>    "picture": "https://pbs.twimg.com/profile_images/378800000388596881/9f63214014e1185735743748d07a2093_bigger.jpeg",
+>    "text": "As ruas estão tudo quebradas!!! EH MOLE?",
+>    "createdAt": null,
+>    "updatedAt": null,
+>    "politicianId": 1
+>  }
+>]
+>```
+
+## /tweet
+
+>### [GET] /tweet
+>
+>**Description**
+>
+>Gather random tweets about random politicians. Skips tweets you already analyzed.
+>
+>**Query**
+>
+>`access_token = TOKEN_HERE`
+>
+>**Response**
+>
+>```json
+>[
+>  {
+>    "id": 1,
+>    "name": "Mauricio Giordano",
+>    "username": "mauriciogior",
+>    "picture": "https://pbs.twimg.com/profile_images/378800000388596881/9f63214014e1185735743748d07a2093_bigger.jpeg",
+>    "text": "As ruas estão tudo quebradas!!! EH MOLE?",
+>    "createdAt": null,
+>    "updatedAt": null,
+>    "politicianId": 1
+>  }
+>]
+>```
+
+>### [GET] /tweet/seed
+>
+>**Description**
+>
+>Seeds the content from scup and twitter.
+>
+>**Query**
+>
+>`access_token = TOKEN_HERE`
 >
 >**Response**
 >
