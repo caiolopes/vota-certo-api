@@ -93,6 +93,47 @@
 >]
 >```
 
+>### [GET] /politician/me
+>
+>**Query**
+>
+>`access_token = TOKEN_HERE`
+>
+>**Response**
+>
+>```json
+>[
+>  {
+>    "politician": {
+>      "id": 2,
+>      "name": "Fernando Haddad",
+>      "picture": "https://cdn.eleicoes2016.com.br/foto/fe/rn/fernando-haddad-l.jpg",
+>      "office": "Prefeito",
+>      "createdAt": null,
+>      "updatedAt": null,
+>      "partyId": 2
+>    },
+>    "positive": 0,
+>    "negative": 1,
+>    "neutral": 0
+>  },
+>  {
+>    "politician": {
+>      "id": 3,
+>      "name": "Celso Russomanno",
+>      "picture": "https://cdn.eleicoes2016.com.br/foto/ce/ls/celso-russomanno-l.jpg",
+>      "office": "Prefeito",
+>      "createdAt": null,
+>      "updatedAt": null,
+>      "partyId": 5
+>    },
+>    "positive": 0,
+>    "negative": 0,
+>    "neutral": 1
+>  }
+>]
+>```
+
 >### [GET] /politician/:id
 >
 >**Query**
